@@ -1,6 +1,10 @@
 package Front.ParrentAbstract;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import java.awt.*;
 
 public abstract class AbstractFront extends JFrame {
@@ -24,6 +28,47 @@ public abstract class AbstractFront extends JFrame {
         setVisible(true);
         setBoundsCenter(panel, DEFAULT_WIDTH_WINDOW, DEFAULT_HEIGHT_WINDOW,
                 DEFAULT_WIDTH_WINDOW, DEFAULT_HEIGHT_WINDOW);
+    }
+
+    protected void setFrame(JPanel panel, JTable tableData) {
+        setFrame(panel);
+        DefaultTableModel tableModel = new DefaultTableModel(new String[]{"Авторы", "Книги"}, 0);
+        tableData.getTableHeader().setFont(new Font("Times New Roman", Font.BOLD, 16));
+        tableData.setModel(tableModel);
+        for(int i = 0; i<100000; i++){
+            tableModel.addRow(new Object[]{i+1, "Book" + i});
+        }
+    }
+
+    protected void setTableDataCenter(JTable tableData, JScrollPane scrollData) {
+        setBoundsCenter(scrollData, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW, 1200, 500);
+        setBoundsCenter(tableData, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW, 1200, 500);
+    }
+
+    protected void setElementsAuthenticationWindow(JLabel textAuthentication,
+                                                   JTextField login, JPasswordField password,
+                                                   JLabel textLogin, JLabel textPassword){
+        setBoundsCenter(textAuthentication, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW - 200, 200, 22);
+        setBoundsCenter(login, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW - 50, 240, 30);
+
+        login.setDocument(new PlainDocument(){
+            public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+                if(getLength() + str.length() <= 20){
+                    super.insertString(offs, str, a);
+                }
+            }
+        });
+
+        setBoundsCenter(password, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW + 50, 240, 30);
+        setBoundsCenter(textLogin, DEFAULT_WIDTH_WINDOW - 250,
+                DEFAULT_HEIGHT_WINDOW - 50, 130, 30);
+        setBoundsCenter(textPassword, DEFAULT_WIDTH_WINDOW - 270,
+                DEFAULT_HEIGHT_WINDOW + 50, 130, 30);
     }
 
     protected void setBoundsCenter(Container container, int x, int y, int width, int height) {
