@@ -6,7 +6,7 @@ import Server.LocalServer;
 import javax.swing.*;
 
 
-public class AuthenticationWindow extends AbstractFront {
+public class AuthenticationWindow extends AbstractFront {       //окно авторизации
     private JPanel panel;
     private JLabel textAuthentication;
     private JButton loginButton;
@@ -26,17 +26,18 @@ public class AuthenticationWindow extends AbstractFront {
                 loginField, passwordField, textLogin, textPassword);
         setBoundsCenter(loginButton, DEFAULT_WIDTH_WINDOW,
                 DEFAULT_HEIGHT_WINDOW + 150, 130, 30);
-        loginButton.addActionListener(_ ->{
+        loginButton.addActionListener(_ ->{       //действие кнопки войти
             String login = loginField.getText();
             String password = passwordField.getText();
-            if(!LocalServer.isLogin(login)){
+            if(!LocalServer.isLogin(login)){         //если такого логина нет
                 JOptionPane.showMessageDialog(null, "Такого логина нет!\n Зарегистрируйтесь!");
-            } else if(!LocalServer.isPassword(login, password)){
+            } else if(!LocalServer.isPassword(login, password)){   //если неверный пароль
                 JOptionPane.showMessageDialog(null, "Неверный пароль!");
-            } else if (LocalServer.isManager(login)){
+            } else if (LocalServer.isManager(login)){      //проверка менеджера
                 AuthenticationWindow.this.dispose();
                 MainWindowManager manager = new MainWindowManager();
             } else {
+                AuthenticationWindow.this.dispose();
                 MainWindowClient client = new MainWindowClient();
             }
         });
@@ -45,7 +46,7 @@ public class AuthenticationWindow extends AbstractFront {
                 DEFAULT_HEIGHT_WINDOW / 2 - 300, 200, 40);
         regButton.addActionListener(_ -> {
             AuthenticationWindow.this.dispose();
-            RegistrationWindow registationWindow = new RegistrationWindow();
+            RegistrationWindow registrationWindow = new RegistrationWindow();
         });
     }
 

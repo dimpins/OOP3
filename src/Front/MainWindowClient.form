@@ -23,7 +23,7 @@
           <component id="d5fae" class="javax.swing.JTable" binding="tableData">
             <constraints/>
             <properties>
-              <background color="-4672321"/>
+              <background color="-2435359"/>
               <enabled value="false"/>
               <fillsViewportHeight value="false"/>
               <font name="Times New Roman" size="14" style="0"/>
@@ -76,7 +76,7 @@
           <editable value="false"/>
           <font name="Times New Roman" size="20" style="1"/>
           <model>
-            <item value="A-Я: авторы"/>
+            <item value="А-Я: авторы"/>
             <item value="Я-А: авторы"/>
             <item value="А-Я: названия"/>
             <item value="Я-А: названия"/>
