@@ -1,18 +1,17 @@
 package Front;
 
 import Front.ParrentAbstract.AbstractFront;
+import Server.LocalServer;
 
 import javax.swing.*;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
+
 
 public class AuthenticationWindow extends AbstractFront {
     private JPanel panel;
     private JLabel textAuthentication;
     private JButton loginButton;
-    private JTextField login;
-    private JPasswordField password;
+    private JTextField loginField;
+    private JPasswordField passwordField;
     private JLabel textLogin;
     private JLabel textPassword;
     private JButton regButton;
@@ -24,11 +23,30 @@ public class AuthenticationWindow extends AbstractFront {
     @Override
     public void setOtherElements() {
         super.setElementsAuthenticationWindow(textAuthentication,
-                login, password, textLogin, textPassword);
+                loginField, passwordField, textLogin, textPassword);
         setBoundsCenter(loginButton, DEFAULT_WIDTH_WINDOW,
                 DEFAULT_HEIGHT_WINDOW + 150, 130, 30);
+        loginButton.addActionListener(_ ->{
+            String login = loginField.getText();
+            String password = passwordField.getText();
+            if(!LocalServer.isLogin(login)){
+                JOptionPane.showMessageDialog(null, "Такого логина нет!\n Зарегистрируйтесь!");
+            } else if(!LocalServer.isPassword(login, password)){
+                JOptionPane.showMessageDialog(null, "Неверный пароль!");
+            } else if (LocalServer.isManager(login)){
+                AuthenticationWindow.this.dispose();
+                MainWindowManager manager = new MainWindowManager();
+            } else {
+                MainWindowClient client = new MainWindowClient();
+            }
+        });
+
         setBoundsCenter(regButton, DEFAULT_WIDTH_WINDOW + 900,
-                DEFAULT_HEIGHT_WINDOW/2 - 300, 200, 40);
+                DEFAULT_HEIGHT_WINDOW / 2 - 300, 200, 40);
+        regButton.addActionListener(_ -> {
+            AuthenticationWindow.this.dispose();
+            RegistrationWindow registationWindow = new RegistrationWindow();
+        });
     }
 
 }

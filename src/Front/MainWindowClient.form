@@ -35,15 +35,6 @@
           </component>
         </children>
       </scrollpane>
-      <component id="f2101" class="javax.swing.JComboBox" binding="comboBoxSort">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <toolTipText value=""/>
-        </properties>
-      </component>
       <component id="c87c5" class="javax.swing.JButton" binding="buttonSearch">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -75,6 +66,22 @@
           <background color="-461569"/>
           <font name="Times New Roman" size="20" style="1"/>
           <text value="Выход"/>
+        </properties>
+      </component>
+      <component id="892ae" class="javax.swing.JComboBox" binding="comboBoxSort">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <font name="Times New Roman" size="20" style="1"/>
+          <model>
+            <item value="A-Я: авторы"/>
+            <item value="Я-А: авторы"/>
+            <item value="А-Я: названия"/>
+            <item value="Я-А: названия"/>
+          </model>
+          <toolTipText value=""/>
         </properties>
       </component>
     </children>

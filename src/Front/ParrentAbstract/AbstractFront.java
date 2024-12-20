@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
 
@@ -48,7 +49,7 @@ public abstract class AbstractFront extends JFrame {
     }
 
     protected void setElementsAuthenticationWindow(JLabel textAuthentication,
-                                                   JTextField login, JPasswordField password,
+                                                   JTextField login, JTextComponent password,
                                                    JLabel textLogin, JLabel textPassword){
         setBoundsCenter(textAuthentication, DEFAULT_WIDTH_WINDOW,
                 DEFAULT_HEIGHT_WINDOW - 200, 200, 22);
@@ -69,6 +70,18 @@ public abstract class AbstractFront extends JFrame {
                 DEFAULT_HEIGHT_WINDOW - 50, 130, 30);
         setBoundsCenter(textPassword, DEFAULT_WIDTH_WINDOW - 270,
                 DEFAULT_HEIGHT_WINDOW + 50, 130, 30);
+    }
+
+    protected void setElementsBookWindow(JLabel textAddBook, JTextField authorField,
+                                         JTextField nameBookField, JLabel textAuthor,
+                                         JLabel textNameBook, JButton addButton, JButton closeButton){
+        setElementsAuthenticationWindow(textAddBook, authorField, nameBookField, textAuthor, textNameBook);
+        setBoundsCenter(textNameBook, DEFAULT_WIDTH_WINDOW - 310,
+                DEFAULT_HEIGHT_WINDOW + 50, 130, 30);
+        setBoundsCenter(addButton, DEFAULT_WIDTH_WINDOW,
+                DEFAULT_HEIGHT_WINDOW + 150, 180, 30);
+        setBoundsCenter(closeButton, DEFAULT_WIDTH_WINDOW + 900,
+                (int) (DEFAULT_HEIGHT_WINDOW * 1.5) + 200, 200, 40);
     }
 
     protected void setBoundsCenter(Container container, int x, int y, int width, int height) {
